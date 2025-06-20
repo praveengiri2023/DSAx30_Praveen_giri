@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void sub_sequence(vector<int> nums,int index,vector<vector<int>>& ans,vector<int> output)
+{
+    if(index>=nums.size())
+    {
+     ans.push_back(output);
+     return;
+    }
+    sub_sequence(nums,index+1,ans,output);
+    int ele=nums[index];
+    output.push_back(ele);
+    sub_sequence(nums,index+1,ans,output);
+}
+
+int main()
+{
+    vector<int> nums={1,2,3};
+    int index=0;
+    vector<vector<int>> result;
+    vector<int> output;
+    sub_sequence(nums,index,result,output);
+    cout<<"{";
+    for(int i=0;i<result.size();i++)
+    {   cout<<"{";
+        for(int j=0;j<result[i].size();j++)
+        {
+            cout<< result[i][j] <<" ";
+        }
+        cout<<"}";
+    }
+    cout<<"}";
+    return 0;
+}
